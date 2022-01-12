@@ -4,3 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 end
+
+#rails generate model Product name:string price:integer image_url:string description:string 
