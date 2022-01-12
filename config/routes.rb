@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "/black_market" => "products#black_market_method"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
