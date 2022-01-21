@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get "/black_market" => "products#black_market_method"
-  get "/heart" => "products#heart_method"
-  get "/brain" => "products#brain_method"
-  get "/foot" => "products#foot_method"
-  get "/gallbladder" => "products#gallbladder_method"
-
+  get "/products" => "products#index"
+  get "/products/:id" => "products#show"
+  post "/products" => "products#create"
+  patch "/products/:id" => "products#update"
+  delete "/products/:id" => "products#destroy"
 end

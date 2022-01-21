@@ -1,0 +1,31 @@
+GET http://localhost:3000/products?discount=50
+
+
+###
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Finger",
+  "price": 10,
+  "description": "Like a toe, but on your hand",
+  "quantity": 10
+  
+
+}
+
+###
+
+PATCH http://localhost:3000/products/2
+Content-Type: application/json
+
+{
+  "image_url": "https://img.tfd.com/medical/Davis/Tabers/th/b26.jpg"
+}
+
+###
+DELETE http://localhost:3000/products/5
+
+###
+
+GET http://localhost:3000/products/1
