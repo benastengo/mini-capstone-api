@@ -8,6 +8,7 @@ class Product < ApplicationRecord
 
   belongs_to :supplier
   has_many :images
+  has_many :orders
 
   def is_discounted?
     price < 10
@@ -21,5 +22,20 @@ class Product < ApplicationRecord
     price + tax
   end
 
-  scope :discounted, -> (discount_value) { where("(price) < ? ", discount_value) }
+  scope :title_search, ->(search_terms) { where("name ILIKE ?", "%#{search_terms}%") if search_terms }
+
+  scope :discounted, ->(check_discount) { where("price < ?", 10) if check_discount }
+
+  scope :sorted, ->(sort, sort_order) {
+    if sort == "price"
+      if sort_order == "desc"
+        order(price: :desc)
+      else
+        order(:price)
+      end
+    else
+      order(id: :asc)
+    end
+  }
+
 end

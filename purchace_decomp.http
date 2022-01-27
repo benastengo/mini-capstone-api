@@ -1,0 +1,10 @@
+# Create an orders model
+# Look at schema folder to see what associations need to be made
+# Make associations between order, product, and user
+# Test all associations to make sure they work per rails console
+# Create an orders restful route
+# create an orders controller
+# Make a create method for orders
+# Ensure all 
+#
+#

@@ -1,28 +1,28 @@
 class ProductsController < ApplicationController
-
-  def index 
-    products = Product.discounted(params[:discount])
-    if params[:search]
-      products = products.where("name iLIKE ?", "%#{params[:search]}%")
-    end
-    if params[:discount]
-      products = products.where("price < ?", 20)
-    end
-    if params[:sort]  == "price"
-      if params[:sort_order] == "desc"
-        products = products.order(price: :desc)
-      else
-        products = products.order(:price)
-      end
-    else
-      products = products.order(:id)
-    end
-    render json: products
-  end
+  before_action :authenticate_admin, except: [:index, :show]
+  # before_action :authenticate_admin, only: [:create, :update, :destroy]
   
-  def show
-    product = Product.find(params[:id])
-    render json: product.as_json(methods: [:is_discounted?, :tax, :total])
+  def index
+    products = Product
+      .title_search(params[:search])
+      .discounted(params[:discount])
+      .sorted(params[:sort], params[:sort_order])
+    # if params[:search]
+    #   products = products.where("name iLike ?", "%#{params[:search]}%")
+    # end
+    # if params[:discount]
+    #   products = products.where("price < ?", 10)
+    # end
+    # if params[:sort] == "price"
+    #   if params[:sort_order] == "desc"
+    #     products = products.order(price: :desc)
+    #   else
+    #     products = products.order(:price)
+    #   end
+    # else
+    #   products = products.order(:id)
+    # end
+    render json: products
   end
 
   def create
@@ -30,31 +30,37 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      quantity: params[:quantity]
+      quantity: params[:quantity],
+      supplier_id: params[:supplier_id]
     )
     if product.save
-      render json: product.as_json
-    else render json: {errors: product.errors.full_messages}
+      render json: product
+    else
+      render json: {errors: product.errors.full_messages}, status: :unprocessable_entity
     end
+  end
 
+  def show
+    product = Product.find_by(id: params[:id])
+    render json: product
   end
 
   def update
-    product = Product.find(params[:id])
+    product = Product.find_by(id: params[:id])
     product.name = params[:name] || product.name
     product.price = params[:price] || product.price
     product.description = params[:description] || product.description
-    product.image_url = params[:image_url] || product.image_url
     product.quantity = params[:quantity] || product.quantity
     if product.save
-      render json: product.as_json
-    else render json: {errors: product.errors.full_messages}
+      render json: product
+    else
+      render json: {errors: product.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    product = Product.find(params[:id])
+    product = Product.find_by(id: params[:id])
     product.destroy
-    render json: {message: "Product successfully deleted from database"}
+    render json: { message: "Product destroyed successfully!" }
   end
 end

@@ -1,31 +1,71 @@
-GET http://localhost:3000/products?discount=50
+@domain = http://localhost:3000
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDMzMDUzMTR9.6IO0MfDR4I8pwixXFk4pX0zLbDzHI7ugwn2HncOXyVw
+
+### Produts Index
+GET {{ domain }}/products
+
+### Produts Create
+POST {{ domain }}/products
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
 
 
-###
-POST http://localhost:3000/products
+{
+  "name": "Liver",
+  "price": "50",
+  "description": "A large lobed glandular organ in the abdomen of vertebrates, involved in many metabolic processes.",
+  "quantity": 10,
+  "supplier_id": 1
+}
+
+### Products Show
+GET {{ domain }}/products/2
+
+### Products Update
+PATCH {{ domain }}/products/1
 Content-Type: application/json
 
 {
-  "name": "Finger",
-  "price": 10,
-  "description": "Like a toe, but on your hand",
-  "quantity": 10
-  
-
+  "quantity": 6
 }
 
-###
+### Products Destroy
+DELETE {{ domain }}/products/1
 
-PATCH http://localhost:3000/products/2
+### Users create (signup)
+POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "image_url": "https://img.tfd.com/medical/Davis/Tabers/th/b26.jpg"
+  "name": "Chris Jones",
+  "email": "cdineroj@gmail.com",
+  "password": "password",
+  "password_confirmation": "password"
 }
 
-###
-DELETE http://localhost:3000/products/5
+### Sessions create (login)
+POST {{ domain }}/sessions
+Content-Type: application/json
 
-###
+{
+  "email": "test@test.com",
+  "password": "password"
+}
 
-GET http://localhost:3000/products/1
+### Orders index
+GET {{ domain }}/orders
+Authorization: Bearer {{ jwt }}
+
+### Orders create
+POST {{ domain }}/orders
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "product_id": 4,
+  "quantity": 5
+}
+
+### Orders show
+GET {{ domain }}/orders/3
+Authorization: Bearer {{ jwt }}

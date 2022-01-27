@@ -8,3 +8,50 @@ Content-Type: application/json
   "password": "password",
   "password_confirmation": "password"
 }
+### Users create (signup)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Ben Astengo",
+  "email": "ben@test.com",
+  "password": "password1",
+  "password_confirmation": "password1"
+}
+### Users create (signup)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Dj",
+  "email": "Dj@test.com",
+  "password": "password2",
+  "password_confirmation": "password2"
+}
+
+### Sessions create (login)
+POST http://localhost:3000/sessions
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password"
+}
+
+### Sessions create (login)
+POST http://localhost:3000/sessions
+Content-Type: application/json
+
+{
+  "email": "ben@test.com",
+  "password": "password1"
+}
+
+### Sessions create (login)
+POST http://localhost:3000/sessions
+Content-Type: application/json
+
+{
+  "email": "Dj@test.com",
+  "password": "password2"
+}
