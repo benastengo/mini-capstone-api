@@ -4,7 +4,7 @@
 @jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDM0OTE4NjV9.04EbfTXoRtdjJYf3tmPjH-8KyDlyAHkP5lNGQd99Bn8
 
 ### Produts Index
-GET {{ domain }}/products?category=Damage
+GET {{ domain }}/products?category=Organ
 
 ### Produts Create
 POST {{ domain }}/products
@@ -13,9 +13,9 @@ Authorization: Bearer {{ jwt }}
 
 
 {
-  "name": "D&D Players Handbook",
+  "name": "Toe",
   "price": "50",
-  "description": "A lovely 5th edition handbook for your players.",
+  "description": "A finger on your foot",
   "quantity": 6,
   "supplier_id": 2
 }
@@ -39,8 +39,8 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "name": "Cheddar",
-  "email": "cheddar@gmail.com",
+  "name": "Davie",
+  "email": "Dave@gmail.com",
   "password": "password",
   "password_confirmation": "password"
 }
@@ -50,7 +50,7 @@ POST {{ domain }}/sessions
 Content-Type: application/json
 
 {
-  "email": "ace@gmail.com",
+  "email": "test@test.com",
   "password": "password"
 }
 
