@@ -1,8 +1,10 @@
+
+   
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDM0MjkwNTd9.iuCRkp1NpzCw67vdWZbPVd6KOKXV_3f9fD40XJn-nG0
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDM0OTE4NjV9.04EbfTXoRtdjJYf3tmPjH-8KyDlyAHkP5lNGQd99Bn8
 
 ### Produts Index
-GET {{ domain }}/products?category=cheap
+GET {{ domain }}/products?category=Damage
 
 ### Produts Create
 POST {{ domain }}/products
@@ -11,11 +13,11 @@ Authorization: Bearer {{ jwt }}
 
 
 {
-  "name": "Liver",
+  "name": "D&D Players Handbook",
   "price": "50",
-  "description": "A large lobed glandular organ in the abdomen of vertebrates, involved in many metabolic processes.",
-  "quantity": 10,
-  "supplier_id": 1
+  "description": "A lovely 5th edition handbook for your players.",
+  "quantity": 6,
+  "supplier_id": 2
 }
 
 ### Products Show
@@ -37,8 +39,8 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "name": "Chris Jones",
-  "email": "cdineroj@gmail.com",
+  "name": "Cheddar",
+  "email": "cheddar@gmail.com",
   "password": "password",
   "password_confirmation": "password"
 }
@@ -48,7 +50,7 @@ POST {{ domain }}/sessions
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "ace@gmail.com",
   "password": "password"
 }
 
@@ -58,14 +60,22 @@ Authorization: Bearer {{ jwt }}
 
 ### Orders create
 POST {{ domain }}/orders
-Content-Type: application/json
 Authorization: Bearer {{ jwt }}
-
-{
-  "product_id": 4,
-  "quantity": 5
-}
 
 ### Orders show
 GET {{ domain }}/orders/3
 Authorization: Bearer {{ jwt }}
+
+### Carted Products Index
+GET {{ domain }}/carted_products
+Authorization: Bearer {{ jwt }}
+
+### Carted Products Create
+POST {{ domain }}/carted_products
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "product_id": 1,
+  "quantity": 2
+}

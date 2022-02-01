@@ -1,16 +1,25 @@
 class Product < ApplicationRecord
+  
+  # validates :name, presence: true, uniqueness: true
+  # validates :price, numericality: { greater_than: 0 }
+  # validates :description, presence: true, length: { in: 10..700 }
+  # validates :quantity, presence: true, numericality: true
 
-  validates :name, :price, :description, :quantity, presence: true
-  validates :price, numericality: { :greater_than_or_equal_to => 0 }
-  validates :description, length: { in: 10..500 }
-  validates :name, :description, uniqueness: true
-  validates :quantity, numericality: { only_integer: true}
-
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
   belongs_to :supplier
   has_many :images
-  has_many :orders
   has_many :product_categories
   has_many :categories, through: :product_categories
+  has_many :carted_products
+  has_many :orders, through: :carted_products
+  
+  # def categories
+  #   product_categories.map do |handshake|
+  #     handshake.category
+  #   end
+  # end
 
   def is_discounted?
     price < 10

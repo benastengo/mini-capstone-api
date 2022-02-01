@@ -1,0 +1,6 @@
+rails g model CartedProducts user_id:integer product_id:integer quantity:integer status order_id:integer
+rails db:migrate
+rails g migration RemoveProductIdAndQuantityFromOrders
+rails g controller cartedProducts
+Make routes and actions for carted products
+add model associations (refer to spreadsheet)
