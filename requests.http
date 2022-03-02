@@ -1,7 +1,7 @@
 
    
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDM0OTE4NjV9.04EbfTXoRtdjJYf3tmPjH-8KyDlyAHkP5lNGQd99Bn8
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDQ5NTkxNzl9.JhDoPU-SC4rA7k6FEpFhhvxu5S6dVhmOCQKi8q7VPCw
 
 ### Produts Index
 GET {{ domain }}/products?category=Organ
@@ -39,8 +39,8 @@ POST {{ domain }}/users
 Content-Type: application/json
 
 {
-  "name": "Davie",
-  "email": "Dave@gmail.com",
+  "name": "Ryan",
+  "email": "Ryan@gmail.com",
   "password": "password",
   "password_confirmation": "password"
 }
